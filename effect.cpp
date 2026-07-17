@@ -11,25 +11,6 @@
 #include "uiDraw.h"
 #include <cassert>
 
-#ifdef __APPLE__
-#define GL_SILENCE_DEPRECATION
-#include <openGL/gl.h>    // Main OpenGL library
-#include <GLUT/glut.h>    // Second OpenGL library
-#endif // __APPLE__
-
-#ifdef __linux__
-#include <GL/gl.h>        // Main OpenGL library
-#include <GL/glut.h>      // Second OpenGL library
-#endif // __linux__
-
-#ifdef _WIN32
-#include <stdio.h>
-#include <stdlib.h>
-#include <GL/glut.h>         // OpenGL library we copied
-#define _USE_MATH_DEFINES
-#include <math.h>
-#endif // _WIN32
-
 /******************************************************************
  * RANDOM
  * This function generates a random number.

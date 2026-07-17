@@ -32,7 +32,6 @@ public:
    void drawText(const Position& topLeft, const std::string& text,
                  double red = 1.0, double green = 1.0, double blue = 1.0) const;
 	void drawBackground(double redBack, double greenBack, double blueBack) const;
-	void drawBullseye(double angle) const;
    void drawTimer(double percent,
       double redFore, double greenFore, double blueFore,
 		double redBack, double greenBack, double blueBack) const;

@@ -113,7 +113,7 @@ void Skeet::drawLevel() const
 
    // draw the bullseye
    if (bullseye)
-      gout.drawBullseye(gun.getAngle());
+      drawBullseye(gun.getAngle());
 
    // output the gun
    gun.display(gout);
@@ -132,6 +132,20 @@ void Skeet::drawLevel() const
    gout.drawText(Position(10,                         dimensions.getY() - 30), score.getText()  );
    gout.drawText(Position(dimensions.getX() / 2 - 30, dimensions.getY() - 30), time.getText()   );
    gout.drawText(Position(dimensions.getX() - 110,    dimensions.getY() - 30), hitRatio.getText());
+}
+
+void Skeet::drawBullseye(double angle) const
+{
+   double distance = dimensions.getX();
+   double x = dimensions.getX() - distance * cos(angle);
+   double y = distance * sin(angle);
+
+   // crosshairs
+   gout.drawLine(Position(x - 10.0, y), Position(x + 10.0, y), 0.6, 0.6, 0.6);
+   gout.drawLine(Position(x, y - 10.0), Position(x, y + 10.0), 0.6, 0.6, 0.6);
+
+   // sightline from the gun
+   gout.drawLine(Position(dimensions.getX(), 0.0), Position(x, y), 0.2, 0.2, 0.2);
 }
 
 /************************

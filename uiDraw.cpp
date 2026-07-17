@@ -232,36 +232,6 @@ void ogstream::drawBackground(double redBack, double greenBack, double blueBack)
    glEnd();
 }
 
-/************************
- * DRAW BULLSEYE
- * Put a bullseye on the screen
- ************************/
-void ogstream::drawBullseye(double angle) const
-{
-   // find where we are pointing
-   double distance = pt.getX();
-   GLfloat x = pt.getX() - distance * cos(angle);
-   GLfloat y = distance * sin(angle);
-
-   // draw the crosshairs
-   glBegin(GL_LINES);
-   glColor3f((GLfloat)0.6, (GLfloat)0.6, (GLfloat)0.6);
-
-   // Draw the actual lines
-   glVertex2f(x - 10.0, y);
-   glVertex2f(x + 10.0, y);
-
-   glVertex2f(x, y - 10.0);
-   glVertex2f(x, y + 10.0);
-
-   glColor3f((GLfloat)0.2, (GLfloat)0.2, (GLfloat)0.2);
-   glVertex2f(pt.getX(), 0.0);
-   glVertex2f(x, y);
-
-   // Complete drawing
-   glEnd();
-}
-
 /************************************************************************
  * DRAW Timer
  * Draw a large timer on the screen
