@@ -39,6 +39,7 @@ public:
    Velocity getVelocity()  const { return v;      }
    double getRadius()      const { return radius; }
    int getPoints() const { return points; }
+   virtual std::string getType() const { return "Bird"; }
    bool isOutOfBounds() const
    {
       return (pt.getX() < -radius || pt.getX() >= dimensions.getX() + radius ||
@@ -46,7 +47,6 @@ public:
    }
 
    // special functions
-   virtual void draw() = 0;
    virtual void advance() = 0;
 };
 
@@ -58,6 +58,7 @@ class Standard : public Bird
 {
 public:
     Standard(double radius = 25.0, double speed = 5.0, int points = 10);
+    virtual std::string getType() const override { return "Normal"; } // So that it and Sinker can be distinguished by first character
     void draw();
     void advance();
 };
@@ -70,6 +71,7 @@ class Floater : public Bird
 {
 public:
     Floater(double radius = 30.0, double speed = 5.0, int points = 15);
+    virtual std::string getType() const override { return "Floater"; }
     void draw();
     void advance();
 };
@@ -82,6 +84,7 @@ class Crazy : public Bird
 {
 public:
     Crazy(double radius = 30.0, double speed = 4.5, int points = 30);
+    virtual std::string getType() const override { return "Crazy"; }
     void draw();
     void advance();
 };
@@ -94,6 +97,7 @@ class Sinker : public Bird
 {
 public:
     Sinker(double radius = 30.0, double speed = 4.5, int points = 20);
+    virtual std::string getType() const override { return "Sinker"; }
     void draw();
     void advance();
 };

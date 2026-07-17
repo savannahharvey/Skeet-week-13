@@ -40,10 +40,10 @@ public:
    Velocity getVelocity()  const { return v;      }
    double getRadius()      const { return radius; }
    int getValue()          const { return value;  }
+   virtual std::string getType() const { return "Bullet"; }
 
    // special functions
    virtual void death(std::list<Bullet *> & bullets) {}
-   virtual void output() = 0;
    virtual void input(bool isUp, bool isDown, bool isB) {}
    virtual void move(std::list<Effect*> &effects);
 
@@ -53,11 +53,6 @@ protected:
       return (pt.getX() < -radius || pt.getX() >= dimensions.getX() + radius ||
          pt.getY() < -radius || pt.getY() >= dimensions.getY() + radius);
    }
-   void drawLine(const Position& begin, const Position& end,
-                 double red = 1.0, double green = 1.0, double blue = 1.0) const;
-
-   void drawDot(const Position& point, double radius = 2.0,
-                double red = 1.0, double green = 1.0, double blue = 1.0) const;
    int    random(int    min, int    max);
    double random(double min, double max);
 };
@@ -70,8 +65,7 @@ class Pellet : public Bullet
 {
 public:
    Pellet(double angle, double speed = 15.0) : Bullet(angle, speed, 1.0, 1) {}
-   
-   void output();
+   virtual std::string getType() const override { return "Pellet"; }
 };
 
 /*********************
@@ -84,8 +78,7 @@ private:
    int timeToDie;
 public:
    Bomb(double angle, double speed = 10.0) : Bullet(angle, speed, 4.0, 4), timeToDie(60) {}
-   
-   void output();
+   virtual std::string getType() const override { return "Bomb"; }
    void move(std::list<Effect*> & effects);
    void death(std::list<Bullet *> & bullets);
 };
@@ -112,8 +105,7 @@ public:
       
       radius = 3.0;
    }
-   
-   void output();  
+   virtual std::string getType() const override { return "Shrapnel"; }
    void move(std::list<Effect*> & effects);
 };
 
@@ -127,7 +119,6 @@ class Missile : public Bullet
 public:
    Missile(double angle, double speed = 10.0) : Bullet(angle, speed, 1.0, 3) {}
    
-   void output();
    void input(bool isUp, bool isDown, bool isB)
    {
       if (isUp)
@@ -135,5 +126,6 @@ public:
       if (isDown)
          v.turn(-0.04);
    }
+   virtual std::string getType() const override { return "Missile"; }
    void move(std::list<Effect*> & effects);
 };

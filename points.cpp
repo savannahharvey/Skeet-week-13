@@ -69,33 +69,6 @@ Points::Points(const Position & pt, int value)
 }
 
 /*********************************************
- * POINTS SHOW
- * Draw a points value on the screen
- *********************************************/
-void Points::show() const
-{
-   if (value == 0)
-      return;
-
-   void* pFont = GLUT_TEXT;
-
-   // set the color
-   GLfloat red   = (value <= 0.0 ? 1.0 : 0.0) * age;
-   GLfloat green = (value <= 0.0 ? 0.0 : 1.0) * age;
-   GLfloat blue  = 0.0;
-   glColor3f(red, green, blue);
-
-   // specify the position
-   glRasterPos2f((GLfloat)pt.getX(), (GLfloat)pt.getY());
-
-   // draw the digits
-   int number = (value > 0 ? value : -value);
-   if (number / 10 != 0)
-      glutBitmapCharacter(pFont, (char)(number / 10) + '0');
-   glutBitmapCharacter(pFont, (char)(number % 10) + '0');
-}
-
-/*********************************************
  * POINTS UPDATE
  * Move the points value on the screen
  *********************************************/

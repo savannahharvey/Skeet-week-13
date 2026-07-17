@@ -20,9 +20,11 @@ class Points
 {
 public:
    Points(const Position& pt, int value);
-   void show() const;
    void update();
    bool isDead() const {return age <= 0.0; }
+   int getValue() const { return value; }
+   float getAge() const { return age; }
+   const Position& getPosition() const { return pt; }
 private:
    Position pt;
    Velocity v;
