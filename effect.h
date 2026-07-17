@@ -23,6 +23,7 @@ public:
     Effect(const Position & pt) : pt(pt), age(0.5) {}
     double getAge() const { return age; }
     const Position& getPosition() const { return pt; }
+    virtual const Position& getPtEnd() const { return Position(0.0, 0.0); }
     virtual double getSize() const { return 0.0; }
     
     // move it forward with regards to inertia. Let it age
@@ -66,6 +67,7 @@ public:
     Streek(const Position & pt, Velocity v);
     
     virtual std::string getType() const override { return "Streak"; }
+    virtual const Position& getPtEnd() const override { return ptEnd; }
     
     // move it forward with regards to inertia. Let it age
     void fly();
@@ -84,6 +86,7 @@ public:
     Exhaust(const Position & pt, Velocity v);
     
     virtual std::string getType() const override { return "Exhaust"; }
+    virtual const Position& getPtEnd() const override { return ptEnd; }
     
     // move it forward with regards to inertia. Let it age
     void fly();

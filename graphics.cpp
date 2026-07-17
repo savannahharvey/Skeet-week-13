@@ -354,7 +354,7 @@ void Graphics::drawEffects(const Effect* effect)
 
             // Draw the actual line
             glVertex2f((GLfloat)effect->getPosition().getX(), (GLfloat)effect->getPosition().getY());
-            glVertex2f((GLfloat)effect->getPosition().getX(), (GLfloat)effect->getPosition().getY());
+            glVertex2f((GLfloat)effect->getPtEnd().getX(), (GLfloat)effect->getPtEnd().getY());
 
             glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
             glEnd();
@@ -368,7 +368,7 @@ void Graphics::drawEffects(const Effect* effect)
 
             // Draw the actual line
             glVertex2f((GLfloat)effect->getPosition().getX(), (GLfloat)effect->getPosition().getY());
-            glVertex2f((GLfloat)effect->getPosition().getX(), (GLfloat)effect->getPosition().getY());
+            glVertex2f((GLfloat)effect->getPtEnd().getX(), (GLfloat)effect->getPtEnd().getY());
             glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
             glEnd();
          }
