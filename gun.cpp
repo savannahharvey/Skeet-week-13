@@ -98,7 +98,7 @@ void drawRectangle(const Position& pt,
   * GUN : DISPLAY
   * Display the gun on the screen
   *********************************************/
-void Gun::display() const
+void RealGun::display() const
 {
    drawRectangle(pt, M_PI_2 - angle, 10.0, 100.0, 1.0, 1.0, 1.0);
 }
@@ -107,7 +107,7 @@ void Gun::display() const
  * GUN : INTERACT
  * Move the gun
  *********************************************/
-void Gun::interact(int clockwise, int counterclockwise)
+void RealGun::interact(int clockwise, int counterclockwise)
 {
    // move it
    if (clockwise > 0)
@@ -123,3 +123,36 @@ void Gun::interact(int clockwise, int counterclockwise)
          angle = 0.0;
    }
 }
+
+/*********************************************
+ * PROXY GUN : DISPLAY
+ * Lazy-create the RealGun then display
+ *********************************************/
+void ProxyGun::display() const
+{
+   if (pRealGun == nullptr)
+      pRealGun = new RealGun(pt);
+   pRealGun->display();
+}
+
+/*********************************************
+ * PROXY GUN : INTERACT
+ * Forward to RealGun only if created
+ *********************************************/
+void ProxyGun::interact(int clockwise, int counterclockwise)
+{
+   if (pRealGun != nullptr)
+      pRealGun->interact(clockwise, counterclockwise);
+}
+
+/*********************************************
+ * PROXY GUN : GET ANGLE
+ * Return RealGun angle if available, else proxy angle
+ *********************************************/
+double ProxyGun::getAngle() const
+{
+   if (pRealGun != nullptr)
+      return pRealGun->getAngle();
+   return angle;
+}
+
