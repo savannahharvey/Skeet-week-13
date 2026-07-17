@@ -8,13 +8,15 @@
  ************************************************************************/
 
 #pragma once
+
 #include "position.h"
+#include "flyer.h"
 
 /**********************
  * BIRD
  * Everything that can be shot
  **********************/
-class Bird
+class Bird : public Flyer
 {
 protected:
    static Position dimensions; // size of the screen
