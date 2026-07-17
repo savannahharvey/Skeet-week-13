@@ -1,0 +1,7 @@
+﻿  bird.cpp
+  bullet.cpp
+  effect.cpp
+  points.cpp
+C:\Users\Kaleb\Documents\CSE331\Skeet-week-13\points.cpp(58,11): warning C4305: '-=': truncation from 'double' to 'float'
+  Generating Code...
+  Skeet.vcxproj -> C:\Users\Kaleb\Documents\CSE331\Skeet-week-13\x64\Debug\Skeet.exe

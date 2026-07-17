@@ -1,4 +1,5 @@
 #include "graphics.h"
+
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
 #include <openGL/gl.h>    // Main OpenGL library
