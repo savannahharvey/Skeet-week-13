@@ -29,6 +29,7 @@
     <ClCompile Include="score.cpp" />
     <ClCompile Include="skeet.cpp" />
     <ClCompile Include="time.cpp" />
+    <ClCompile Include="uiDraw.cpp" />
     <ClCompile Include="uiInteract.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -41,6 +42,7 @@
     <ClInclude Include="score.h" />
     <ClInclude Include="skeet.h" />
     <ClInclude Include="time.h" />
+    <ClInclude Include="uiDraw.h" />
     <ClInclude Include="uiInteract.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

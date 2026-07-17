@@ -131,57 +131,7 @@ void Shrapnel::move(std::list<Effect*> & effects)
 /***************************************************************/
 /***************************************************************/
 
-/*************************************************************************
- * GL VERTEXT POINT
- * Just a more convenient format of glVertext2f
- *************************************************************************/
-inline void glVertexPoint(const Position& point)
-{
-   glVertex2f((GLfloat)point.getX(), (GLfloat)point.getY());
-}
 
-/************************************************************************
- * DRAW LINE
- * Draw a line on the screen from the beginning to the end.
- *************************************************************************/
-void Bullet::drawLine(const Position& begin, const Position& end,
-                      double red, double green, double blue) const
-{
-   // Get ready...
-   glBegin(GL_LINES);
-   glColor3f((GLfloat)red, (GLfloat)green, (GLfloat)blue);
-
-   // Draw the actual line
-   glVertexPoint(begin);
-   glVertexPoint(end);
-
-   // Complete drawing
-   glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
-   glEnd();
-}
-
-/************************************************************************
- * DRAW DOT
- * Draw a single point (square actually on the screen, r pixels by r pixels
- *************************************************************************/
-void Bullet::drawDot(const Position& point, double radius,
-                     double red, double green, double blue) const
-{
-   // Get ready, get set...
-   glBegin(GL_TRIANGLE_FAN);
-   glColor3f((GLfloat)red, (GLfloat)green, (GLfloat)blue);
-   double r = radius / 2.0;
-
-   // Go...
-   glVertex2f((GLfloat)(point.getX() - r), (GLfloat)(point.getY() - r));
-   glVertex2f((GLfloat)(point.getX() + r), (GLfloat)(point.getY() - r));
-   glVertex2f((GLfloat)(point.getX() + r), (GLfloat)(point.getY() + r));
-   glVertex2f((GLfloat)(point.getX() - r), (GLfloat)(point.getY() + r));
-
-   // Done!  OK, that was a bit too dramatic
-   glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
-   glEnd();
-}
 
 /*********************************************
  * PELLET OUTPUT
