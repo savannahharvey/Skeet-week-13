@@ -34,22 +34,22 @@ public:
    void drawTimer(double percent,
       double redFore, double greenFore, double blueFore,
 		double redBack, double greenBack, double blueBack) const;
+   void drawRectangle(const Position& pt,
+      double angle = 0.0,
+      double width = 10.0,
+      double height = 100.0,
+      double red = 1.0,
+      double green = 1.0,
+		double blue = 1.0) const;
+   void drawLine(const Position& begin, const Position& end,
+		double red = 1.0, double green = 1.0, double blue = 1.0) const;
+	void drawDot(const Position& point, double radius = 2.0,
+		double red = 1.0, double green = 1.0, double blue = 1.0) const;
+   void drawDisk(const Position& center, double radius,
+		double red, double green, double blue) const;
 
 private:
 	Position pt;
 };
 
-void drawRectangle(const Position& pt,
-   double angle = 0.0,
-   double width = 10.0,
-   double height = 100.0,
-   double red = 1.0,
-   double green = 1.0,
-   double blue = 1.0);
-void drawLine(const Position& begin, const Position& end,
-   double red = 1.0, double green = 1.0, double blue = 1.0);
-void drawDot(const Position& point, double radius = 2.0,
-   double red = 1.0, double green = 1.0, double blue = 1.0);
-void drawDisk(const Position& center, double radius,
-   double red, double green, double blue);
 Position rotate(const Position& origin, double x, double y, double rotation);

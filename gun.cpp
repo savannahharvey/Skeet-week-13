@@ -16,9 +16,9 @@
   * GUN : DISPLAY
   * Display the gun on the screen
   *********************************************/
-void Gun::display() const
+void Gun::display(const ogstream & gout) const
 {
-   drawRectangle(pt, M_PI_2 - angle, 10.0, 100.0, 1.0, 1.0, 1.0);
+   gout.drawRectangle(pt, M_PI_2 - angle, 10.0, 100.0, 1.0, 1.0, 1.0);
 }
 
 /*********************************************

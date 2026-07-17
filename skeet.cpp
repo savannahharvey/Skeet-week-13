@@ -116,17 +116,17 @@ void Skeet::drawLevel() const
       gout.drawBullseye(gun.getAngle());
 
    // output the gun
-   gun.display();
-         
+   gun.display(gout);
+
    // output the birds, bullets, and fragments
    for (auto& pts : points)
       pts.show();
    for (auto effect : effects)
       effect->render();
    for (auto bullet : bullets)
-      bullet->output();
+      bullet->output(gout);
    for (auto element : birds)
-      element->draw();
+      element->draw(gout);
    
    // status
    gout.drawText(Position(10,                         dimensions.getY() - 30), score.getText()  );

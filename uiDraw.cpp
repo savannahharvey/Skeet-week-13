@@ -105,13 +105,13 @@ void ogstream::drawText(const Position& topLeft, const string& text) const
  * DRAW RECTANGLE
  * Draw a rectangle on the screen from the beginning to the end.
  *************************************************************************/
-void drawRectangle(const Position& pt,
+void ogstream::drawRectangle(const Position& pt,
    double angle,
    double width,
    double height,
    double red,
    double green,
-   double blue)
+   double blue) const
 {
    // Get ready...
    glBegin(GL_QUADS);
@@ -133,8 +133,8 @@ void drawRectangle(const Position& pt,
  * DRAW LINE
  * Draw a line on the screen from the beginning to the end.
  *************************************************************************/
-void drawLine(const Position& begin, const Position& end,
-   double red, double green, double blue)
+void ogstream::drawLine(const Position& begin, const Position& end,
+   double red, double green, double blue) const
 {
    // Get ready...
    glBegin(GL_LINES);
@@ -153,8 +153,8 @@ void drawLine(const Position& begin, const Position& end,
  * DRAW DOT
  * Draw a single point (square actually on the screen, r pixels by r pixels
  *************************************************************************/
-void drawDot(const Position& point, double radius,
-   double red, double green, double blue)
+void ogstream::drawDot(const Position& point, double radius,
+   double red, double green, double blue) const
 {
    // Get ready, get set...
    glBegin(GL_TRIANGLE_FAN);
@@ -176,8 +176,8 @@ void drawDot(const Position& point, double radius,
  * DRAW Disk
  * Draw a filled circule at [center] with size [radius]
  *************************************************************************/
-void drawDisk(const Position& center, double radius,
-   double red, double green, double blue)
+void ogstream::drawDisk(const Position& center, double radius,
+   double red, double green, double blue) const
 {
    assert(radius > 1.0);
    const double increment = M_PI / radius;  // bigger the circle, the more increments

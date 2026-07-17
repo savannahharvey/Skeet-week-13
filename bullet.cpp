@@ -138,25 +138,25 @@ void Shrapnel::move(std::list<Effect*> & effects)
  * PELLET OUTPUT
  * Draw a pellet - just a 3-pixel dot
  *********************************************/
-void Pellet::output()
+void Pellet::output(const ogstream & gout)
 {
    if (!isDead())
-      drawDot(pt, 3.0, 1.0, 1.0, 0.0);
+      gout.drawDot(pt, 3.0, 1.0, 1.0, 0.0);
 }
 
 /*********************************************
  * BOMB OUTPUT
  * Draw a bomb - many dots to make it have a soft edge
  *********************************************/
-void Bomb::output()
+void Bomb::output(const ogstream & gout)
 {
    if (!isDead())
    {
        // Bomb actually has a gradient to cut out the harsh edges
-       drawDot(pt, radius + 2.0, 0.50, 0.50, 0.00);
-       drawDot(pt, radius + 1.0, 0.75, 0.75, 0.00);
-       drawDot(pt, radius + 0.0, 0.87, 0.87, 0.00);
-       drawDot(pt, radius - 1.0, 1.00, 1.00, 0.00);
+       gout.drawDot(pt, radius + 2.0, 0.50, 0.50, 0.00);
+       gout.drawDot(pt, radius + 1.0, 0.75, 0.75, 0.00);
+       gout.drawDot(pt, radius + 0.0, 0.87, 0.87, 0.00);
+       gout.drawDot(pt, radius - 1.0, 1.00, 1.00, 0.00);
    }
 }
 
@@ -164,25 +164,25 @@ void Bomb::output()
  * SHRAPNEL OUTPUT
  * Draw a fragment - a bright yellow dot
  *********************************************/
-void Shrapnel::output()
+void Shrapnel::output(const ogstream & gout)
 {
     if (!isDead())
-       drawDot(pt, radius, 1.0, 1.0, 0.0);
+       gout.drawDot(pt, radius, 1.0, 1.0, 0.0);
 }
 
 /*********************************************
  * MISSILE OUTPUT
  * Draw a missile - a line and a dot for the fins
  *********************************************/
-void Missile::output()
+void Missile::output(const ogstream & gout)
 {
     if (!isDead())
     {
         // missile is a line with a dot at the end so it looks like fins.
         Position ptNext(pt);
         ptNext.add(v);
-        drawLine(pt, ptNext, 1.0, 1.0, 0.0);
-        drawDot(pt, 3.0, 1.0, 1.0, 1.0);
+        gout.drawLine(pt, ptNext, 1.0, 1.0, 0.0);
+        gout.drawDot(pt, 3.0, 1.0, 1.0, 1.0);
     }
 }
 
