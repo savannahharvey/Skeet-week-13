@@ -1,7 +1,15 @@
 ﻿  bird.cpp
-  bullet.cpp
-  effect.cpp
-  points.cpp
-C:\Users\Kaleb\Documents\CSE331\Skeet-week-13\points.cpp(58,11): warning C4305: '-=': truncation from 'double' to 'float'
+  game.cpp
+  graphics.cpp
+C:\Users\lando\Classes\CSE 331\W13 ver. Codebase\graphics.cpp(138,16): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\lando\Classes\CSE 331\W13 ver. Codebase\graphics.cpp(139,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\lando\Classes\CSE 331\W13 ver. Codebase\graphics.cpp(502,14): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\lando\Classes\CSE 331\W13 ver. Codebase\graphics.cpp(503,14): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\lando\Classes\CSE 331\W13 ver. Codebase\graphics.cpp(510,17): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\lando\Classes\CSE 331\W13 ver. Codebase\graphics.cpp(511,17): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\lando\Classes\CSE 331\W13 ver. Codebase\graphics.cpp(513,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\lando\Classes\CSE 331\W13 ver. Codebase\graphics.cpp(514,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\lando\Classes\CSE 331\W13 ver. Codebase\graphics.cpp(517,30): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  skeet.cpp
   Generating Code...
-  Skeet.vcxproj -> C:\Users\Kaleb\Documents\CSE331\Skeet-week-13\x64\Debug\Skeet.exe
+  Skeet.vcxproj -> C:\Users\lando\Classes\CSE 331\W13 ver. Codebase\x64\Debug\Skeet.exe
