@@ -8,6 +8,7 @@
  ************************************************************************/
 
 #include "effect.h"
+#include "uiDraw.h"
 #include <cassert>
 
 #ifdef __APPLE__
@@ -101,69 +102,36 @@ Exhaust::Exhaust(const Position & pt, Velocity v) : Effect(pt)
  * FRAGMENT RENDER
  * Draw the fragment on the screen
  *************************************************************************/
-void Fragment::render() const
+void Fragment::render(const ogstream& gout) const
 {
     // Do nothing if we are already dead
-    if (isDead())
-        return;
-    
-    // Draw this sucker
-    glBegin(GL_TRIANGLE_FAN);
-    
-    // the color is a function of age - fading to black
-    glColor3f((GLfloat)age, (GLfloat)age, (GLfloat)age);
-    
-    // draw the fragment
-    glVertex2f((GLfloat)(pt.getX() - size), (GLfloat)(pt.getY() - size));
-    glVertex2f((GLfloat)(pt.getX() + size), (GLfloat)(pt.getY() - size));
-    glVertex2f((GLfloat)(pt.getX() + size), (GLfloat)(pt.getY() + size));
-    glVertex2f((GLfloat)(pt.getX() - size), (GLfloat)(pt.getY() + size));
-    glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
-    glEnd();
+   if (isDead())
+      return;
+   gout.drawDot(pt, size * 2.0, age, age, age);
 }
 
 /************************************************************************
  * STREEK RENDER
  * Draw the shrapnel streek on the screen
  *************************************************************************/
-void Streek::render() const
+void Streek::render(const ogstream& gout) const
 {
     // Do nothing if we are already dead
     if (isDead())
         return;
-    
-    // Draw this sucker
-    glBegin(GL_LINES);
-    glColor3f((GLfloat)age, (GLfloat)age, (GLfloat)age);
-
-    // Draw the actual line
-    glVertex2f((GLfloat)pt.getX(), (GLfloat)pt.getY());
-    glVertex2f((GLfloat)ptEnd.getX(), (GLfloat)ptEnd.getY());
-
-    glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
-    glEnd();
+    gout.drawLine(pt, ptEnd, age, age, age);
 }
 
 /************************************************************************
  * EXHAUST RENDER
  * Draw a missile exhaust on the screen
  *************************************************************************/
-void Exhaust::render() const
+void Exhaust::render(const ogstream& gout) const
 {
    // Do nothing if we are already dead
    if (isDead())
        return;
-   
-   // Draw this sucker
-   glBegin(GL_LINES);
-   glColor3f((GLfloat)age, (GLfloat)age, (GLfloat)age);
-
-   // Draw the actual line
-   glVertex2f((GLfloat)pt.getX(), (GLfloat)pt.getY());
-   glVertex2f((GLfloat)ptEnd.getX(), (GLfloat)ptEnd.getY());
-
-   glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
-   glEnd();
+   gout.drawLine(pt, ptEnd, age, age, age);
 }
 
 /***************************************************************/

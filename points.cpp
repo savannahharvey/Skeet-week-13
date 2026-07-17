@@ -72,27 +72,16 @@ Points::Points(const Position & pt, int value)
  * POINTS SHOW
  * Draw a points value on the screen
  *********************************************/
-void Points::show() const
+void Points::show(const ogstream & gout) const
 {
    if (value == 0)
       return;
 
-   void* pFont = GLUT_TEXT;
+   double red = (value <= 0.0 ? 1.0 : 0.0) * age;
+   double green = (value <= 0.0 ? 0.0 : 1.0) * age;
+   double blue = 0.0;
 
-   // set the color
-   GLfloat red   = (value <= 0.0 ? 1.0 : 0.0) * age;
-   GLfloat green = (value <= 0.0 ? 0.0 : 1.0) * age;
-   GLfloat blue  = 0.0;
-   glColor3f(red, green, blue);
-
-   // specify the position
-   glRasterPos2f((GLfloat)pt.getX(), (GLfloat)pt.getY());
-
-   // draw the digits
-   int number = (value > 0 ? value : -value);
-   if (number / 10 != 0)
-      glutBitmapCharacter(pFont, (char)(number / 10) + '0');
-   glutBitmapCharacter(pFont, (char)(number % 10) + '0');
+   gout.drawText(pt, std::to_string(value <= 0 ? -value : value), red, green, blue);
 }
 
 /*********************************************

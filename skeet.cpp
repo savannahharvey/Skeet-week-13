@@ -120,9 +120,9 @@ void Skeet::drawLevel() const
 
    // output the birds, bullets, and fragments
    for (auto& pts : points)
-      pts.show();
+      pts.show(gout);
    for (auto effect : effects)
-      effect->render();
+      effect->render(gout);
    for (auto bullet : bullets)
       bullet->output(gout);
    for (auto element : birds)

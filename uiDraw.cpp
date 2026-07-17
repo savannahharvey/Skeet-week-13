@@ -83,10 +83,11 @@ void ogstream::flush()
  *   INPUT  topLeft   The top left corner of the text
  *          text      The text to be displayed
  ************************************************************************/
-void ogstream::drawText(const Position& topLeft, const char* text) const
+void ogstream::drawText(const Position& topLeft, const char* text,
+                              double red, double green, double blue) const
 {
    void* pFont = GLUT_TEXT;
-   glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
+   glColor3f((GLfloat)red, (GLfloat)green, (GLfloat)blue);
 
    // prepare to output the text from the top-left corner
    glRasterPos2f((GLfloat)topLeft.getX(), (GLfloat)topLeft.getY());
@@ -95,9 +96,10 @@ void ogstream::drawText(const Position& topLeft, const char* text) const
    for (const char* p = text; *p; p++)
       glutBitmapCharacter(pFont, *p);
 }
-void ogstream::drawText(const Position& topLeft, const string& text) const
+void ogstream::drawText(const Position& topLeft, const string& text,
+                              double red, double green, double blue) const
 {
-   drawText(topLeft, text.c_str());
+   drawText(topLeft, text.c_str(), red, green, blue);
 }
 
 

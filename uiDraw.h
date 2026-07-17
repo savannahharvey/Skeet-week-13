@@ -27,8 +27,10 @@ public:
    virtual void flush();
    void setPosition(const Position& pt) { flush(); this->pt = pt; }
 
-	void drawText(const Position& topLeft, const char* text) const;
-   void drawText(const Position& topLeft, const std::string& text) const;
+	void drawText(const Position& topLeft, const char* text,
+                 double red = 1.0, double green = 1.0, double blue = 1.0) const;
+   void drawText(const Position& topLeft, const std::string& text,
+                 double red = 1.0, double green = 1.0, double blue = 1.0) const;
 	void drawBackground(double redBack, double greenBack, double blueBack) const;
 	void drawBullseye(double angle) const;
    void drawTimer(double percent,
