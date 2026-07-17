@@ -1,0 +1,23 @@
+# Visual Studio cache / options
+.vs/
+
+# Build output
+[Dd]ebug/
+[Rr]elease/
+x64/
+Win32/
+*.obj
+*.exe
+*.pdb
+*.ilk
+*.idb
+*.log
+*.tlog
+*.lastbuildstate
+
+# NuGet packages
+packages/
+
+# User-specific project settings
+*.user
+*.suo
