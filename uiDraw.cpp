@@ -83,7 +83,7 @@ void ogstream::flush()
  *   INPUT  topLeft   The top left corner of the text
  *          text      The text to be displayed
  ************************************************************************/
-void ogstream::drawText(const Position& topLeft, const char* text)
+void ogstream::drawText(const Position& topLeft, const char* text) const
 {
    void* pFont = GLUT_TEXT;
    glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
@@ -95,7 +95,7 @@ void ogstream::drawText(const Position& topLeft, const char* text)
    for (const char* p = text; *p; p++)
       glutBitmapCharacter(pFont, *p);
 }
-void drawText(const Position& topLeft, const string& text)
+void ogstream::drawText(const Position& topLeft, const string& text) const
 {
    drawText(topLeft, text.c_str());
 }
@@ -105,13 +105,13 @@ void drawText(const Position& topLeft, const string& text)
  * DRAW RECTANGLE
  * Draw a rectangle on the screen from the beginning to the end.
  *************************************************************************/
-void ogstream::drawRectangle(const Position& pt,
-   double angle = 0.0,
-   double width = 10.0,
-   double height = 100.0,
-   double red = 1.0,
-   double green = 1.0,
-   double blue = 1.0)
+void drawRectangle(const Position& pt,
+   double angle,
+   double width,
+   double height,
+   double red,
+   double green,
+   double blue)
 {
    // Get ready...
    glBegin(GL_QUADS);
@@ -133,8 +133,8 @@ void ogstream::drawRectangle(const Position& pt,
  * DRAW LINE
  * Draw a line on the screen from the beginning to the end.
  *************************************************************************/
-void ogstream::drawLine(const Position& begin, const Position& end,
-   double red, double green, double blue) const
+void drawLine(const Position& begin, const Position& end,
+   double red, double green, double blue)
 {
    // Get ready...
    glBegin(GL_LINES);
@@ -153,8 +153,8 @@ void ogstream::drawLine(const Position& begin, const Position& end,
  * DRAW DOT
  * Draw a single point (square actually on the screen, r pixels by r pixels
  *************************************************************************/
-void ogstream::drawDot(const Position& point, double radius,
-   double red, double green, double blue) const
+void drawDot(const Position& point, double radius,
+   double red, double green, double blue)
 {
    // Get ready, get set...
    glBegin(GL_TRIANGLE_FAN);
@@ -176,7 +176,7 @@ void ogstream::drawDot(const Position& point, double radius,
  * DRAW Disk
  * Draw a filled circule at [center] with size [radius]
  *************************************************************************/
-void ogstream::drawDisk(const Position& center, double radius,
+void drawDisk(const Position& center, double radius,
    double red, double green, double blue)
 {
    assert(radius > 1.0);

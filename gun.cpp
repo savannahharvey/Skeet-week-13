@@ -7,6 +7,8 @@
  *    The gun at the bottom of the screen
  ************************************************************************/
 
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include "gun.h"
 #include "uiDraw.h"
 

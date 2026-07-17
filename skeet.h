@@ -30,7 +30,7 @@ class Skeet
 {
 public:
     Skeet(Position & dimensions) : dimensions(dimensions),
-        gun(Position(800.0, 0.0)), time(), score(), hitRatio(), bullseye(false) {}
+        gun(Position(800.0, 0.0)), time(), score(), hitRatio(), bullseye(false), gout(dimensions) {}
 
     // handle all user input
     void interact(const UserInput& ui);

@@ -109,11 +109,11 @@ void Skeet::animate()
 void Skeet::drawLevel() const
 {
    // output the background
-   drawBackground(time.level() * .1, 0.0, 0.0);
-   
+   gout.drawBackground(time.level() * .1, 0.0, 0.0);
+
    // draw the bullseye
    if (bullseye)
-      drawBullseye(gun.getAngle());
+      gout.drawBullseye(gun.getAngle());
 
    // output the gun
    gun.display();
@@ -129,9 +129,9 @@ void Skeet::drawLevel() const
       element->draw();
    
    // status
-   drawText(Position(10,                         dimensions.getY() - 30), score.getText()  );
-   drawText(Position(dimensions.getX() / 2 - 30, dimensions.getY() - 30), time.getText()   );
-   drawText(Position(dimensions.getX() - 110,    dimensions.getY() - 30), hitRatio.getText());
+   gout.drawText(Position(10,                         dimensions.getY() - 30), score.getText()  );
+   gout.drawText(Position(dimensions.getX() / 2 - 30, dimensions.getY() - 30), time.getText()   );
+   gout.drawText(Position(dimensions.getX() - 110,    dimensions.getY() - 30), hitRatio.getText());
 }
 
 /************************
@@ -145,24 +145,24 @@ void Skeet::drawStatus() const
    if (time.isGameOver())
    {
       // draw the end of game message
-      drawText(Position(dimensions.getX() / 2 - 30, dimensions.getY() / 2 + 10),
+      gout.drawText(Position(dimensions.getX() / 2 - 30, dimensions.getY() / 2 + 10),
                "Game Over");
 
       // draw end of game status
-      drawText(Position(dimensions.getX() / 2 - 30, dimensions.getY() / 2 - 10),
+      gout.drawText(Position(dimensions.getX() / 2 - 30, dimensions.getY() / 2 - 10),
                score.getText());
    }
    else
    {
       // output the status timer
-      drawTimer(1.0 - time.percentLeft(),
+      gout.drawTimer(1.0 - time.percentLeft(),
                      (time.level() - 0.0) * .1, 0.0, 0.0,
                      (time.level() - 1.0) * .1, 0.0, 0.0);
 
       // draw the message giving a countdown
       sout << "Level " << time.level()
            << " begins in " << time.secondsLeft() << " seconds";
-      drawText(Position(dimensions.getX() / 2 - 110, dimensions.getY() / 2 - 10),
+      gout.drawText(Position(dimensions.getX() / 2 - 110, dimensions.getY() / 2 - 10),
          sout.str());
    }
 }
