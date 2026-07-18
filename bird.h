@@ -49,7 +49,7 @@ class Standard : public Bird
 {
 public:
     Standard(double radius = 25.0, double speed = 5.0, int points = 10);
-    void draw();
+    void draw() const;
     void move();
 };
 
@@ -61,7 +61,7 @@ class Floater : public Bird
 {
 public:
     Floater(double radius = 30.0, double speed = 5.0, int points = 15);
-    void draw();
+    void draw() const;
     void move();
 };
 
@@ -73,7 +73,7 @@ class Crazy : public Bird
 {
 public:
     Crazy(double radius = 30.0, double speed = 4.5, int points = 30);
-    void draw();
+    void draw() const;
     void move();
 };
 
@@ -85,6 +85,6 @@ class Sinker : public Bird
 {
 public:
     Sinker(double radius = 30.0, double speed = 4.5, int points = 20);
-    void draw();
+    void draw() const;
     void move();
 };

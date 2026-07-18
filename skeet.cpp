@@ -56,13 +56,17 @@ void Skeet::animate()
    // move the birds and the bullets
    for (auto element : birds)
    {
-      element->advance();
+      element->move();
       hitRatio.adjust(element->isDead() ? -1 : 0);
    }
    for (auto bullet : bullets)
-      bullet->move(effects);
+   {
+      bullet->move();
+      for (auto effect : bullet->collectEffects())
+         effects.push_back(effect);
+   }
    for (auto effect : effects)
-      effect->fly();
+      effect->move();
    for (auto & pts : points)
       pts.update();
       
@@ -306,9 +310,9 @@ void Skeet::drawLevel() const
    for (auto& pts : points)
       pts.show();
    for (auto effect : effects)
-      effect->render();
+      effect->draw();
    for (auto bullet : bullets)
-      bullet->output();
+      bullet->draw();
    for (auto element : birds)
       element->draw();
    

@@ -96,15 +96,15 @@ Exhaust::Exhaust(const Position & pt, Velocity v) : Effect(pt)
 
 /***************************************************************/
 /***************************************************************/
-/*                           RENDER                            */
+/*                           DRAW                            */
 /***************************************************************/
 /***************************************************************/
 
 /************************************************************************
- * FRAGMENT RENDER
+ * FRAGMENT DRAW
  * Draw the fragment on the screen
  *************************************************************************/
-void Fragment::render() const
+void Fragment::draw() const
 {
     // Do nothing if we are already dead
     if (isDead())
@@ -126,10 +126,10 @@ void Fragment::render() const
 }
 
 /************************************************************************
- * STREEK RENDER
+ * STREEK DRAW
  * Draw the shrapnel streek on the screen
  *************************************************************************/
-void Streek::render() const
+void Streek::draw() const
 {
     // Do nothing if we are already dead
     if (isDead())
@@ -148,10 +148,10 @@ void Streek::render() const
 }
 
 /************************************************************************
- * EXHAUST RENDER
+ * EXHAUST DRAW
  * Draw a missile exhaust on the screen
  *************************************************************************/
-void Exhaust::render() const
+void Exhaust::draw() const
 {
    // Do nothing if we are already dead
    if (isDead())
@@ -171,15 +171,15 @@ void Exhaust::render() const
 
 /***************************************************************/
 /***************************************************************/
-/*                            FLY                              */
+/*                            MOVE                              */
 /***************************************************************/
 /***************************************************************/
 
 /************************************************************************
- * FRAGMENT FLY
+ * FRAGMENT MOVE
  * Move the fragment on the screen
  *************************************************************************/
-void Fragment :: fly()
+void Fragment :: move()
 {
     // move it forward with inertia (no gravity)
     pt += v;
@@ -190,26 +190,26 @@ void Fragment :: fly()
 }
 
 /************************************************************************
- * STREEK FLY
+ * STREEK MOVE
  * The streek will just fade away
  *************************************************************************/
-void Streek :: fly()
+void Streek :: move()
 {
     // move it forward with inertia (no gravity)
-//    pt += v;
+   pt += v;
     
    // increase the age so it fades away
    age -= 0.10;
 }
 
 /************************************************************************
- * EXHAUST FLY
+ * EXHAUST MOVE
  * The exhaust will just fade away
  *************************************************************************/
-void Exhaust :: fly()
+void Exhaust :: move()
 {
    // move it forward with inertia (no gravity)
-//   pt += v;
+   pt += v;
     
    // increase the age so it fades away
    age -= 0.025;

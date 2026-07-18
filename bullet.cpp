@@ -69,7 +69,7 @@ void Bomb::death(std::list<Bullet*>& bullets)
  * BULLET MOVE
  * Move the bullet along by one time period
  *********************************************/
-void Bullet::move(std::list<Effect*> & effects)
+void Bullet::move()
 {
    // inertia
    pt.add(v);
@@ -83,7 +83,7 @@ void Bullet::move(std::list<Effect*> & effects)
  * BOMB MOVE
  * Move the bomb along by one time period
  *********************************************/
-void Bomb::move(std::list<Effect*> & effects)
+void Bomb::move()
 {
     // kill if it has been around too long
     timeToDie--;
@@ -91,27 +91,27 @@ void Bomb::move(std::list<Effect*> & effects)
         kill();
 
     // do the inertia thing
-    Bullet::move(effects);
+    Bullet::move();
 }
 
 /*********************************************
  * MISSILE MOVE
  * Move the missile along by one time period
  *********************************************/
-void Missile::move(std::list<Effect*> & effects)
+void Missile::move()
 {
     // kill if it has been around too long
-   effects.push_back(new Exhaust(pt, v));
+   pendingEffects.push_back(new Exhaust(pt, v));
 
     // do the inertia thing
-    Bullet::move(effects);
+    Bullet::move();
 }
 
 /*********************************************
  * SHRAPNEL MOVE
  * Move the shrapnel along by one time period
  *********************************************/
-void Shrapnel::move(std::list<Effect*> & effects)
+void Shrapnel::move()
 {
     // kill if it has been around too long
     timeToDie--;
@@ -119,10 +119,10 @@ void Shrapnel::move(std::list<Effect*> & effects)
         kill();
 
     // add a streek
-    effects.push_back(new Streek(pt, v));
+    pendingEffects.push_back(new Streek(pt, v));
     
     // do the usual bullet stuff (like inertia)
-    Bullet::move(effects);
+    Bullet::move();
 }
 
 /***************************************************************/
@@ -187,7 +187,7 @@ void Bullet::drawDot(const Position& point, double radius,
  * PELLET DRAW
  * Draw a pellet - just a 3-pixel dot
  *********************************************/
-void Pellet::draw()
+void Pellet::draw() const
 {
    if (!isDead())
       drawDot(pt, 3.0, 1.0, 1.0, 0.0);
@@ -197,7 +197,7 @@ void Pellet::draw()
  * BOMB DRAW
  * Draw a bomb - many dots to make it have a soft edge
  *********************************************/
-void Bomb::draw()
+void Bomb::draw() const
 {
    if (!isDead())
    {
@@ -213,7 +213,7 @@ void Bomb::draw()
  * SHRAPNEL DRAW
  * Draw a fragment - a bright yellow dot
  *********************************************/
-void Shrapnel::draw()
+void Shrapnel::draw() const
 {
     if (!isDead())
        drawDot(pt, radius, 1.0, 1.0, 0.0);
@@ -223,7 +223,7 @@ void Shrapnel::draw()
  * MISSILE DRAW
  * Draw a missile - a line and a dot for the fins
  *********************************************/
-void Missile::draw()
+void Missile::draw() const
 {
     if (!isDead())
     {

@@ -11,7 +11,6 @@
 #include "position.h"
 #include "effect.h"
 #include "flyer.h"
-#include <vector>
 #include <list>
 #include <cassert>
 
@@ -24,7 +23,7 @@ class Bullet : public Flyer
 protected:
    static Position dimensions;   // size of the screen
    int value;                 // how many points does this cost?
-   std::vector<Effect*> pendingEffects;
+   std::list<Effect*> pendingEffects;
     
 public:
    Bullet(double angle = 0.0, double speed = 30.0, double radius = 5.0, int value = 1);
@@ -33,14 +32,14 @@ public:
    void setValue(int newValue)   { value = newValue; }
    
    // getters
+   std::list<Effect*> collectEffects() { return pendingEffects; }
    double getRadius()      const { return radius; }
    int getValue()          const { return value;  }
 
    // special functions
    virtual void death(std::list<Bullet *> & bullets) {}
    virtual void input(bool isUp, bool isDown, bool isB) {}
-   virtual void move(std::list<Effect*> &effects);
-   std::vector<Effect*> collectEffects();
+   virtual void move();
 
 protected:
    bool isOutOfBounds() const
@@ -66,7 +65,7 @@ class Pellet : public Bullet
 public:
    Pellet(double angle, double speed = 15.0) : Bullet(angle, speed, 1.0, 1) {}
    
-   void draw();
+   void draw() const;
 };
 
 /*********************
@@ -80,8 +79,8 @@ private:
 public:
    Bomb(double angle, double speed = 10.0) : Bullet(angle, speed, 4.0, 4), timeToDie(60) {}
    
-   void draw();
-   void move(std::list<Effect*> & effects);
+   void draw() const;
+   void move();
    void death(std::list<Bullet *> & bullets);
 };
 
@@ -94,7 +93,7 @@ class Shrapnel : public Bullet
 private:
    int timeToDie;
 public:
-   Shrapnel(const Bomb & bomb)
+   Shrapnel(const Bomb & bomb) : Bullet()
    {
       // how long will this one live?
       timeToDie = random(5, 15);
@@ -108,8 +107,8 @@ public:
       radius = 3.0;
    }
    
-   void draw();  
-   void move(std::list<Effect*> & effects);
+   void draw() const;
+   void move();
 };
 
 
@@ -122,7 +121,7 @@ class Missile : public Bullet
 public:
    Missile(double angle, double speed = 10.0) : Bullet(angle, speed, 1.0, 3) {}
    
-   void draw();
+   void draw() const;
    void input(bool isUp, bool isDown, bool isB)
    {
       if (isUp)
@@ -130,5 +129,5 @@ public:
       if (isDown)
          v.turn(-0.04);
    }
-   void move(std::list<Effect*> & effects);
+   void move();
 };

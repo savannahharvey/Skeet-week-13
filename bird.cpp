@@ -287,7 +287,7 @@ void drawDisk(const Position& center, double radius,
  * STANDARD DRAW
  * Draw a standard bird: blue center and white outline
  *********************************************/
-void Standard::draw()
+void Standard::draw() const
 {
    if (!isDead())
    {
@@ -300,7 +300,7 @@ void Standard::draw()
  * FLOATER DRAW
  * Draw a floating bird: white center and blue outline
  *********************************************/
-void Floater::draw()
+void Floater::draw() const
 {
    if (!isDead())
    {
@@ -313,7 +313,7 @@ void Floater::draw()
  * CRAZY DRAW
  * Draw a crazy bird: concentric circles in a course gradient
  *********************************************/
-void Crazy::draw()
+void Crazy::draw() const
 {
    if (!isDead())
    {
@@ -329,7 +329,7 @@ void Crazy::draw()
  * SINKER DRAW
  * Draw a sinker bird: black center and dark blue outline
  *********************************************/
-void Sinker::draw()
+void Sinker::draw() const
 {
    if (!isDead())
    {
