@@ -83,7 +83,7 @@ void Skeet::animate()
             element->kill();
             bullet->kill();
             hitRatio.adjust(1);
-            bullet->setValue(-(element->getPoints()));
+            bullet->setPoints(-(element->getPoints()));
             element->setPoints(0);
          }
    
@@ -104,7 +104,7 @@ void Skeet::animate()
       if ((*it)->isDead())
       {
          (*it)->death(bullets);
-         int value = -(*it)->getValue();
+         int value = -(*it)->getPoints();
          points.push_back(Points((*it)->getPosition(), value));
          score.adjust(value);
          it = bullets.erase(it);

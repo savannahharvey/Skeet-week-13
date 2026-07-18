@@ -35,7 +35,7 @@
  * BULLET constructor
  *********************************************/
 Bullet::Bullet(double angle, double speed, double radius, int value) :
-   Flyer(radius), value(value)
+   ScorableFlyer(radius, value)
 {
    // set the initial position
    pt.setX(dimensions.getX() - 1.0);

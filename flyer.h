@@ -25,3 +25,26 @@ public:
    virtual void draw() const = 0 ;
    virtual void move() = 0;
 };
+
+class ScorableFlyer : public Flyer
+{
+public:
+   ScorableFlyer() : Flyer(), points(0) {}
+   ScorableFlyer(double radius, int points = 0) : Flyer(radius), points(points) {}
+
+   void setPoints(int pts) { points = pts; }
+
+   // getters
+   double getRadius()      const { return radius; }
+   int getPoints() const { return points; }
+
+protected:
+   bool isOutOfBounds() const
+   {
+      return (pt.getX() < -radius || pt.getX() >= dimensions.getX() + radius ||
+              pt.getY() < -radius || pt.getY() >= dimensions.getY() + radius);
+   }
+
+   static Position dimensions; // size of the screen
+   int points;                // how many points is this worth?
+};

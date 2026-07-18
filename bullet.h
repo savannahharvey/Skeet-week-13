@@ -18,23 +18,21 @@
  * BULLET
  * Something to shoot something else
  *********************************************/
-class Bullet : public Flyer
+class Bullet : public ScorableFlyer
 {
 protected:
-   static Position dimensions;   // size of the screen
-   int value;                 // how many points does this cost?
    std::list<Effect*> pendingEffects;
     
 public:
    Bullet(double angle = 0.0, double speed = 30.0, double radius = 5.0, int value = 1);
    
-   // setters
-   void setValue(int newValue)   { value = newValue; }
-   
    // getters
-   std::list<Effect*> collectEffects() { return pendingEffects; }
-   double getRadius()      const { return radius; }
-   int getValue()          const { return value;  }
+   inline std::list<Effect*> collectEffects() 
+   { 
+      std::list<Effect*> temp = pendingEffects;
+      pendingEffects.clear(); // clear list of effects before it is used again
+      return temp; 
+   }
 
    // special functions
    virtual void death(std::list<Bullet *> & bullets) {}
@@ -42,11 +40,6 @@ public:
    virtual void move();
 
 protected:
-   bool isOutOfBounds() const
-   {
-      return (pt.getX() < -radius || pt.getX() >= dimensions.getX() + radius ||
-         pt.getY() < -radius || pt.getY() >= dimensions.getY() + radius);
-   }
    void drawLine(const Position& begin, const Position& end,
                  double red = 1.0, double green = 1.0, double blue = 1.0) const;
 
@@ -102,7 +95,7 @@ public:
       v.set(random(0.0, 6.2), random(10.0, 15.0));
       pt = bomb.getPosition();
 
-      value = 0;
+      points = 0;
       
       radius = 3.0;
    }

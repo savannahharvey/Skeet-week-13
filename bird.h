@@ -16,29 +16,15 @@
  * BIRD
  * Everything that can be shot
  **********************/
-class Bird : public Flyer
+class Bird : public ScorableFlyer
 {
-protected:
-   static Position dimensions; // size of the screen
-   int points;                // how many points is this worth?
-   
 public:
-   Bird() : Flyer(), points(0) { }
-   Bird(double r, bool d) : Flyer(r), points(0) {}
+   Bird() : ScorableFlyer() { }
+   Bird(double r) : ScorableFlyer(r) {}
    
    // setters
    void operator=(const Position    & rhs) { pt = rhs;    }
    void operator=(const Velocity & rhs) { v = rhs;     }
-   void setPoints(int pts)              { points = pts;}
-
-   // getters
-   double getRadius()      const { return radius; }
-   int getPoints() const { return points; }
-   bool isOutOfBounds() const
-   {
-      return (pt.getX() < -radius || pt.getX() >= dimensions.getX() + radius ||
-              pt.getY() < -radius || pt.getY() >= dimensions.getY() + radius);
-   }
 };
 
 /*********************************************
