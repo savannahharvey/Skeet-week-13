@@ -35,7 +35,7 @@
  * BULLET constructor
  *********************************************/
 Bullet::Bullet(double angle, double speed, double radius, int value) :
-   dead(false), radius(radius), value(value)
+   Flyer(radius), value(value)
 {
    // set the initial position
    pt.setX(dimensions.getX() - 1.0);
@@ -127,7 +127,7 @@ void Shrapnel::move(std::list<Effect*> & effects)
 
 /***************************************************************/
 /***************************************************************/
-/*                            OUTPUT                           */
+/*                            DRAW                           */
 /***************************************************************/
 /***************************************************************/
 
@@ -184,20 +184,20 @@ void Bullet::drawDot(const Position& point, double radius,
 }
 
 /*********************************************
- * PELLET OUTPUT
+ * PELLET DRAW
  * Draw a pellet - just a 3-pixel dot
  *********************************************/
-void Pellet::output()
+void Pellet::draw()
 {
    if (!isDead())
       drawDot(pt, 3.0, 1.0, 1.0, 0.0);
 }
 
 /*********************************************
- * BOMB OUTPUT
+ * BOMB DRAW
  * Draw a bomb - many dots to make it have a soft edge
  *********************************************/
-void Bomb::output()
+void Bomb::draw()
 {
    if (!isDead())
    {
@@ -210,20 +210,20 @@ void Bomb::output()
 }
 
 /*********************************************
- * SHRAPNEL OUTPUT
+ * SHRAPNEL DRAW
  * Draw a fragment - a bright yellow dot
  *********************************************/
-void Shrapnel::output()
+void Shrapnel::draw()
 {
     if (!isDead())
        drawDot(pt, radius, 1.0, 1.0, 0.0);
 }
 
 /*********************************************
- * MISSILE OUTPUT
+ * MISSILE DRAW
  * Draw a missile - a line and a dot for the fins
  *********************************************/
-void Missile::output()
+void Missile::draw()
 {
     if (!isDead())
     {

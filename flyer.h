@@ -5,13 +5,15 @@
 class Flyer
 {
 protected:
-   Position pt;
-   Velocity v;
-   bool dead;
-   double radius;
+   Position pt;                  // position of the flyer
+   Velocity v;                // velocity of the flyer
+   double radius;             // the size (radius) of the flyer
+   bool dead;                 // is this flyer dead?
 
 public:
-   Flyer() : dead(false), radius(1.0) {}
+   Flyer()                 : dead(false), radius(1.0) {}
+   Flyer(double radius) : dead(false), radius(radius) {}
+
    // getters
    Position getPosition() const { return pt; }
    Velocity getVelocity() const { return v; }

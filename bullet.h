@@ -10,6 +10,8 @@
 #pragma once
 #include "position.h"
 #include "effect.h"
+#include "flyer.h"
+#include <vector>
 #include <list>
 #include <cassert>
 
@@ -17,35 +19,28 @@
  * BULLET
  * Something to shoot something else
  *********************************************/
-class Bullet
+class Bullet : public Flyer
 {
 protected:
    static Position dimensions;   // size of the screen
-   Position pt;                  // position of the bullet
-   Velocity v;                // velocity of the bullet
-   double radius;             // the size (radius) of the bullet
-   bool dead;                 // is this bullet dead?
    int value;                 // how many points does this cost?
+   std::vector<Effect*> pendingEffects;
     
 public:
    Bullet(double angle = 0.0, double speed = 30.0, double radius = 5.0, int value = 1);
    
    // setters
-   void kill()                   { dead = true; }
    void setValue(int newValue)   { value = newValue; }
    
    // getters
-   bool isDead()           const { return dead;   }
-   Position getPosition()  const { return pt;     }
-   Velocity getVelocity()  const { return v;      }
    double getRadius()      const { return radius; }
    int getValue()          const { return value;  }
 
    // special functions
    virtual void death(std::list<Bullet *> & bullets) {}
-   virtual void output() = 0;
    virtual void input(bool isUp, bool isDown, bool isB) {}
    virtual void move(std::list<Effect*> &effects);
+   std::vector<Effect*> collectEffects();
 
 protected:
    bool isOutOfBounds() const
@@ -71,7 +66,7 @@ class Pellet : public Bullet
 public:
    Pellet(double angle, double speed = 15.0) : Bullet(angle, speed, 1.0, 1) {}
    
-   void output();
+   void draw();
 };
 
 /*********************
@@ -85,7 +80,7 @@ private:
 public:
    Bomb(double angle, double speed = 10.0) : Bullet(angle, speed, 4.0, 4), timeToDie(60) {}
    
-   void output();
+   void draw();
    void move(std::list<Effect*> & effects);
    void death(std::list<Bullet *> & bullets);
 };
@@ -113,7 +108,7 @@ public:
       radius = 3.0;
    }
    
-   void output();  
+   void draw();  
    void move(std::list<Effect*> & effects);
 };
 
@@ -127,7 +122,7 @@ class Missile : public Bullet
 public:
    Missile(double angle, double speed = 10.0) : Bullet(angle, speed, 1.0, 3) {}
    
-   void output();
+   void draw();
    void input(bool isUp, bool isDown, bool isB)
    {
       if (isUp)
